@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Yasoda ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(135deg, #16001f, #5b164d, #190020);
+      overflow: hidden;
+    }
+    .page {
+      display: none;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+    }
+    .page.active { display: flex; }
+    .card {
+      width: 100%;
+      max-width: 540px;
+      padding: 30px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      animation: floatIn 0.8s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    h1 { font-size: 40px; margin-bottom: 10px; letter-spacing: 1px; }
+    h2 { font-size: 28px; margin: 12px 0; }
+    p { font-size: 17px; line-height: 1.7; margin: 14px 0; color: #f9d8eb; }
+    button {
+      margin-top: 18px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #ff4f9a, #ff7bbd);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(255, 79, 154, 0.45);
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(255, 79, 154, 0.5);
+    }
+    .heart {
+      font-size: 52px;
+      animation: pulse 1.2s infinite ease-in-out;
+      margin-top: 8px;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    .tiny { font-size: 14px; opacity: 0.85; margin-top: 20px; }
+    .name-glow {
+      color: #ffb3d9;
+      text-shadow: 0 0 20px rgba(255, 79, 154, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎵 Hidden YouTube Player -->
+  <iframe id="ytMusic" width="0" height="0" style="position:absolute;left:-9999px"
+    src="" allow="autoplay" frameborder="0"></iframe>
+
+  <!-- Page 1 -->
+  <div class="page active" id="page1">
+    <div class="card">
+      <h1>Happy Birthday</h1>
+      <h2 class="name-glow">❤️ Yasoda Regmi ❤️</h2>
+      <p>Today is a special day because it's the day you were born. 🎂</p>
+      <button id="nextBtn">Open Surprise 🎁</button>
+    </div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page" id="page2">
+    <div class="card">
+      <h2>For You, Karela 🥳</h2>
+      <p>I hope your birthday brings you lots of happiness, beautiful memories, and countless reasons to smile.</p>
+      <p>May the coming year of your life be filled with success, peace, good health, and everything you wish for. ✨</p>
+      <button id="finalBtn">Read More 💌</button>
+    </div>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page" id="page3">
+    <div class="card">
+      <h2>🎉 Once Again 🎉</h2>
+      <div class="heart">❤</div>
+      <p>Keep being the amazing person you are, keep smiling, and never stop chasing your dreams. 🌸</p>
+      <p>I'm truly happy to have you in my life. Once again, wishing you a very <b>Happy Birthday To You Karela</b> 🥳🎂❤️</p>
+      <p>May this new chapter of your life be even more beautiful than the last. ✨</p>
+      <p class="tiny">— With love & warm wishes,<br><b>Subash Khatri</b> 💕</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const pages = [
+      document.getElementById("page1"),
+      document.getElementById("page2"),
+      document.getElementById("page3")
+    ];
+    let current = 0;
+
+    // 🎵 YouTube music load (autoplay with loop)
+    function playMusic() {
+      document.getElementById("ytMusic").src =
+        "https://www.youtube.com/embed/BRIzqJQ1OtY?autoplay=1&loop=1&playlist=BRIzqJQ1OtY&controls=0";
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      playMusic(); // गाना सुरु 🎵
+      pages[current].classList.remove("active");
+      current = 1;
+      pages[current].classList.add("active");
+    });
+
+    document.getElementById("finalBtn").addEventListener("click", () => {
+      pages[current].classList.remove("active");
+      current = 2;
+      pages[current].classList.add("active");
+
+      // 🎊 Confetti blast
+      confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+      setTimeout(() => confetti({ particleCount: 100, spread: 120 }), 400);
+      setTimeout(() => confetti({ particleCount: 100, spread: 120 }), 800);
+      setTimeout(() => confetti({ particleCount: 80, spread: 100, colors: ['#ff4f9a','#ff7bbd','#ffffff'] }), 1200);
+    });
+  </script>
+
+</body>
+</html>
